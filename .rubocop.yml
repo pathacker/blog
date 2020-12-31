@@ -1,0 +1,12 @@
+AllCops:
+  NewCops: enable
+  Exclude:
+    - db/**/*
+    - local_tems/**/*
+    - node_modules/**/*
+    - bin/*
+    - spec/**/*
+    - test/**/*
+    - config/**/*
+Style/Documentation:
+  Enabled: false
