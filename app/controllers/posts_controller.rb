@@ -2,12 +2,16 @@
 
 class PostsController < ApplicationController
   before_action :set_post, only: %i[show edit update destroy]
+  before_action :authorize, except: %i[index show]
 
   def index
-    @posts = Post.all.order(:created_at)
+    styp = admin? ? Post::POST_STATUSES : ['public']
+    @posts = Post.where(status: styp).order(:created_at)
   end
 
-  def show; end
+  def show
+    redirect_to(posts_path, alert: 'unauthorized access') and return unless @post.public? || admin?
+  end
 
   def new
     @post = Post.new

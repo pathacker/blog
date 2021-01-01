@@ -81,4 +81,5 @@ label {
     display: block; }
 
 .post_title {font-size: 100%; font-weight: bold;}
-.post_status{font-size: 80%; font-weight: normal; font-color: #cccccc;}
+.post_status{font-size: 80%; font-weight: normal; color: #777;}
+p#alert {background-color: #eecccc; padding: 0.3em;}
