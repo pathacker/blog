@@ -6,7 +6,13 @@ class PostsController < ApplicationController
 
   def index
     styp = admin? ? Post::POST_STATUSES : ['public']
-    @posts = Post.where(status: styp).order(:created_at)
+    pquery = Post.where(status: styp)
+    if params[:search].present?
+      spct = "%#{params[:search]}%"
+      ids = ActionTextRichText.where(record_type: 'Post').where('body ilike ?', spct).pluck(:record_id)
+      pquery = pquery.where('title ilike ?', spct).or(pquery.where(id: ids))
+    end
+    @posts = pquery.order(:created_at)
   end
 
   def show
