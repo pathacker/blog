@@ -5,14 +5,7 @@ class PostsController < ApplicationController
   before_action :authorize, except: %i[index show]
 
   def index
-    styp = admin? ? Post::POST_STATUSES : ['public']
-    pquery = Post.where(status: styp)
-    if params[:search].present?
-      spct = "%#{params[:search]}%"
-      ids = ActionTextRichText.where(record_type: 'Post').where('body ilike ?', spct).pluck(:record_id)
-      pquery = pquery.where('title ilike ?', spct).or(pquery.where(id: ids))
-    end
-    @posts = pquery.order(:created_at)
+    @posts = Post.query(admin: admin?, search: params[:search]).order(:created_at)
   end
 
   def show
