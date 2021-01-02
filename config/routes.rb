@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   root 'posts#index'
-  resources :posts
+  resources :posts, except: :destroy
   resource :sessions, only: [:new, :create, :destroy]
   get '/login' => 'sessions#new'
   get '/logout' => 'sessions#destroy'
