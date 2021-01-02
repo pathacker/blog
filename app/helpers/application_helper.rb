@@ -1,15 +1,12 @@
 # frozen_string_literal: true
 
 module ApplicationHelper
-  def show_error_messages(model, model_name)
+  def show_error_messages(model)
     return '' unless model.errors.any?
 
-    str = '<div id="error_explanation">'
-    str += "<h2>#{pluralize(model.errors.count, 'error')} prohibited this #{model_name} from being saved:</h2>"
-    str += '<ul>'
-    model.errors.each { |err| str += "<li>#{err.full_message}</li>" }
-    str += '</ul>'
-    str += '</div>'
-    str
+    title = "#{pluralize(model.errors.count, 'error')} prohibited this #{model.class.name} from being saved:"
+    messages = model.errors.full_messages.map { |msg| "<li>#{msg}</li>" }.join
+
+    "<div id='error_explanation'><h2>#{title}</h2><ul>#{messages}</ul></div>"
   end
 end

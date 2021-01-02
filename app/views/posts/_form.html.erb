@@ -1,5 +1,5 @@
 <%= form_with(model: post) do |form| %>
-  <%= show_error_messages(post, 'post').html_safe %>
+  <%= show_error_messages(post).html_safe %>
 
   <div class="field">
     <%= form.label :title %>
