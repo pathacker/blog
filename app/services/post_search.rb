@@ -1,5 +1,6 @@
-class PostSearch
+# frozen_string_literal: true
 
+class PostSearch
   def self.new(params)
     search = params[:search]
     pquery = Post.where(status: (params[:admin] ? Post::POST_STATUSES : ['public']))
