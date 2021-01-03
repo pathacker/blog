@@ -92,6 +92,7 @@ GEM
       sexp_processor (~> 4.1)
     concurrent-ruby (1.1.7)
     crass (1.0.6)
+    database_cleaner (1.8.5)
     e2mmap (0.1.0)
     erubi (1.10.0)
     fattr (2.4.0)
@@ -273,6 +274,7 @@ DEPENDENCIES
   byebug
   capybara (>= 3.26)
   churn
+  database_cleaner
   jbuilder (~> 2.7)
   listen (~> 3.3)
   pg

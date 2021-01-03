@@ -10,14 +10,4 @@ class Post < ApplicationRecord
   def public?
     status == 'public'
   end
-
-  def self.query(params)
-    search = params[:search]
-    pquery = where(status: (params[:admin] ? POST_STATUSES : ['public']))
-    return pquery unless search.present?
-
-    spct = "%#{search}%"
-    ids = ActionTextRichText.where(record_type: 'Post').where('body ilike ?', spct).pluck(:record_id)
-    pquery.where('title ilike ?', spct).or(pquery.where(id: ids))
-  end
 end

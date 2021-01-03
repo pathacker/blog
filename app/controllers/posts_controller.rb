@@ -5,7 +5,8 @@ class PostsController < ApplicationController
   before_action :authorize, except: %i[index show]
 
   def index
-    @posts = Post.query(admin: admin?, search: params[:search]).order(:created_at)
+    params[:admin] = admin?
+    @posts = PostSearch.new(params).order(:created_at)
   end
 
   def show

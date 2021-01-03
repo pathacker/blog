@@ -23,21 +23,21 @@ gem 'webpacker', '~> 5.0'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
-gem 'active_record_doctor'
-
 group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
 end
 
 group :development do
-  gem 'churn'
   gem 'listen', '~> 3.3'
   gem 'rack-mini-profiler', '~> 2.0'
-  gem 'rubocop'
-  gem 'solargraph'
   gem 'spring'
   gem 'web-console', '>= 4.1.0'
+
+  gem 'active_record_doctor'
+  gem 'churn'
+  gem 'database_cleaner'
+  gem 'rubocop'
+  gem 'solargraph'
 end
 
 group :test do
